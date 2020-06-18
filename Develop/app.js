@@ -11,7 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 
-async function start(){
+async function start() {
     console.log("Let's make your Dream Team!");
 
     // Set Variable to hold HTML
@@ -28,21 +28,21 @@ async function start(){
             name: "noOfTeamMem"
         }
     )
-    .then((data) => {
+        .then((data) => {
 
-        // Number of team members placed in teamSize for scope purposes.
-        // 1 is added start from 1 rather than 0 for user understanding.
-        teamSize = data.noOfTeamMem + 1;
-    });
-    
+            // Number of team members placed in teamSize for scope purposes.
+            // 1 is added start from 1 rather than 0 for user understanding.
+            teamSize = data.noOfTeamMem + 1;
+        });
+
     // If Team Size is 0, will end program
-    if (teamSize === 0){
+    if (teamSize === 0) {
         console.log("I guess there is no one on your team...");
         return;
     }
-    
+
     // Loop begins to ask questions depending on the size of the team
-    for(i = 1; i < teamSize; i++){
+    for (i = 1; i < teamSize; i++) {
 
         // Global variables set
         let name;
@@ -51,7 +51,7 @@ async function start(){
         let email;
 
         // Prompts user to answer the basic questions of the employee
-        await inquirer.prompt([ 
+        await inquirer.prompt([
             {
                 type: "input",
                 message: `What is employee (${i})'s name?`,
@@ -74,17 +74,17 @@ async function start(){
                 choices: ["Engineer", "Intern", "Manager"]
             }
         ])
-        .then((data) => {
+            .then((data) => {
 
-            // Takes data from user and places value in global variables
-            name = data.name;
-            id = data.id;
-            title = data.title;
-            email = data.email;
-        });
+                // Takes data from user and places value in global variables
+                name = data.name;
+                id = data.id;
+                title = data.title;
+                email = data.email;
+            });
 
         // Switch Case depending on the title of the employee
-        switch (title){
+        switch (title) {
             case "Manager":
 
                 // ask user of Manager's Office Number
@@ -95,18 +95,18 @@ async function start(){
                         name: "officeNo"
                     }
                 ])
-                .then((data) => {
+                    .then((data) => {
 
-                    // Create a new object with all avaiable user input data
-                    const manager = new Manager(name, id, email, data.officeNo);
+                        // Create a new object with all avaiable user input data
+                        const manager = new Manager(name, id, email, data.officeNo);
 
-                    // Reads and places HTML from manager.html in teamMemever Variable
-                    teamMember = fs.readFileSync("templates/manager.html");
+                        // Reads and places HTML from manager.html in teamMemever Variable
+                        teamMember = fs.readFileSync("templates/manager.html");
 
-                    // Uses eval() to pass template literals from html files.
-                    // Adds the string to the team HTML.
-                    teamHTML = teamHTML + "\n" + eval('`'+ teamMember +'`');
-                });
+                        // Uses eval() to pass template literals from html files.
+                        // Adds the string to the team HTML.
+                        teamHTML = teamHTML + "\n" + eval('`' + teamMember + '`');
+                    });
                 break;
 
             //Steps Similar to Manager but for intern
@@ -118,11 +118,11 @@ async function start(){
                         name: "school"
                     }
                 ])
-                .then((data) => {
-                    const intern = new Intern(name, id, email, data.school);
-                    teamMember = fs.readFileSync("templates/intern.html");
-                    teamHTML = teamHTML + "\n" + eval('`'+ teamMember +'`');
-                });
+                    .then((data) => {
+                        const intern = new Intern(name, id, email, data.school);
+                        teamMember = fs.readFileSync("templates/intern.html");
+                        teamHTML = teamHTML + "\n" + eval('`' + teamMember + '`');
+                    });
                 break;
 
             //Steps Similar to Manager but for engineer
@@ -134,11 +134,11 @@ async function start(){
                         name: "github"
                     }
                 ])
-                .then((data) => {
-                    const engineer = new Engineer(name, id, email, data.github);
-                    teamMember = fs.readFileSync("templates/engineer.html");
-                    teamHTML = teamHTML + "\n" + eval('`'+ teamMember +'`');
-                });
+                    .then((data) => {
+                        const engineer = new Engineer(name, id, email, data.github);
+                        teamMember = fs.readFileSync("templates/engineer.html");
+                        teamHTML = teamHTML + "\n" + eval('`' + teamMember + '`');
+                    });
                 break;
 
         } // End of Switch Case
@@ -147,20 +147,20 @@ async function start(){
 
     // Reads main.html and places html in a variable
     const mainHTML = fs.readFileSync("templates/main.html");
-    
+
     // Use eval to implement template literals in main.html and places teamHTML inside main template
-    teamHTML = eval('`'+ mainHTML +'`');
+    teamHTML = eval('`' + mainHTML + '`');
 
     // write file to new team.html file
-    fs.writeFile("output/team.html", teamHTML, function(err) {
+    fs.writeFile("output/team.html", teamHTML, function (err) {
 
         if (err) {
-          return console.log(err);
+            return console.log(err);
         }
-      
+
         console.log("Success!");
-      
-      });
+
+    });
 
     // console.log(teamHTML);
 }
