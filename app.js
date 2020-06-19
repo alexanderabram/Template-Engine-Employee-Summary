@@ -18,22 +18,22 @@ function appMenu () {
         inquirer.prompt([
             {
                 type: "input",
-                message: "Please enter your name.",
+                message: "Manager, please enter your name.",
                 name: "name"
             },
             {
                 type: "input",
-                message: "Please enter your employee ID number.",
+                message: "What is your employee ID number?",
                 name: "id"
             },
             {
                 type: "input",
-                message: "Please enter your email",
+                message: "Please enter your email address",
                 name: "email"
             },
             {
                 type: "input",
-                message: "Please enter your Office Number",
+                message: "What is your office number?",
                 name: "officeNumber"
             },
         ])
@@ -47,20 +47,20 @@ function appMenu () {
         inquirer.prompt([
             {
                 type: 'list',
-                message: 'Do you want to create an engineer, intern or built your team template?',
+                message: 'Would you like to add another team member, or create team summary?',
                 name: 'memberChoice',
-                choices: ['engineer', 'intern', 'Build Your Team Template']
+                choices: ['Engineer', 'Intern', 'Build Team Summary']
             }
         ])
         .then(res => {
             switch (res.memberChoice) {
-                case 'engineer':
+                case 'Engineer':
                     addEngineer();
                     break;
-                case 'intern':
+                case 'Intern':
                     addIntern();
                     break;
-                case 'Build Your Team Template':
+                case 'Build Team Summary':
                     buildTeam();
             }
         })
@@ -69,22 +69,22 @@ function appMenu () {
         inquirer.prompt([
             {
                 type: "input",
-                message: "Please enter engineer name.",
+                message: "Please enter employee's name",
                 name: "name"
             },
             {
                 type: "input",
-                message: "Please enter your employee ID number.",
+                message: "Please enter employee's ID number",
                 name: "id"
             },
             {
                 type: "input",
-                message: "Please enter your email",
+                message: "Please enter employee's email address",
                 name: "email"
             },
             {
                 type: "input",
-                message: "Please enter your GitHub",
+                message: "Please enter employee's GitHub account",
                 name: "github"
             },
         ])
@@ -98,22 +98,22 @@ function appMenu () {
         inquirer.prompt([
             {
                 type: "input",
-                message: "Please enter intern name.",
+                message: "Please enter intern's name",
                 name: "name"
             },
             {
                 type: "input",
-                message: "Please enter your employee ID number.",
+                message: "Please enter intern's ID number",
                 name: "id"
             },
             {
                 type: "input",
-                message: "Please enter your email",
+                message: "Please enter intern's email address",
                 name: "email"
             },
             {
                 type: "input",
-                message: "Please enter your school",
+                message: "Please enter intern's school",
                 name: "school"
             },
         ])
