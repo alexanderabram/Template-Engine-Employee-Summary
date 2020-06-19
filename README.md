@@ -24,6 +24,7 @@ https://drive.google.com/file/d/1HIitg93kO_xFJTq0Jh4c2fEKLZSVZkJO/preview
     - User can generate the team summary as is OR  
     - User can continue to answer team prompts.  
 Additional team data will look like so:
+![image](https://user-images.githubusercontent.com/63982568/85095907-70a23980-b1b8-11ea-98f0-bc2736d384ec.png)
 
 ## License
 none
